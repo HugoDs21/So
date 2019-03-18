@@ -3,10 +3,17 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define MAX_STR_SIZE 64
+void lower(char* p){
+  int i = 0;
+  while(*(p+i) != '\0'){
+    *(p+i) = tolower(*(p+i));
+    i++;
+  }
+}
 
 int main(int argc, char* argv[]) {
   char* p1 = (char*)malloc(MAX_STR_SIZE * sizeof(char));
-  //char* p2 = (char*)malloc(MAX_STR_SIZE * sizeof(char));
+  char* p2 = (char*)malloc(MAX_STR_SIZE * sizeof(char));
 
   int result = strcmp(argv[1], argv[2]);
 
@@ -18,7 +25,8 @@ int main(int argc, char* argv[]) {
     printf("%s > %s\n", argv[1], argv[2]);
 
   strcpy(p1, argv[1]);
-  //strcpy(p2, argv[2]);
+  lower(p1);
+  strcpy(p2, argv[2]);
   printf("p1 holds:%s\n", p1);
   printf("p2 holds:%s\n", p2);
   strcat(p1,p2);
