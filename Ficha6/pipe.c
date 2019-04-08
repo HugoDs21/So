@@ -13,7 +13,7 @@
 
 int main(int argc, char* argv[]) {
   int n, r, fd[2];
-  int i = 0;
+  int i;
   pid_t pid;
   char line[BUFSIZ];
   if (pipe(fd) < 0) {
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
     //printf("P=> Messaging the child process (pid %d):\n", pid);
     //snprintf(line, BUFSIZ, "Hello! I’m your parent pid %d!\n", getpid());
     int fp = open ("test.txt", O_RDONLY);
-    i = read(fp,line, 3);
+    i = read(fp,line, BUFSIZ);
     if ((r = write(fd[PP_WR], line, strlen(line))) < 0) {
       fprintf(stderr, "Unable to write to pipe: %s\n", strerror(errno));
     }
